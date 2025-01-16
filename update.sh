@@ -8,7 +8,7 @@ for file in $(find /usr/share/man/man* -type f); do
     mkdir -p "$dirname"
     (cd "$dirname" && zcat "$file" \
         | groff -mandoc -Thtml \
-        | sed -e 's/<b>\([^<]*\)<\/b>(\([^(][^(]*\))/<a href="..\/..\/man\2\/\1\/"><b>\1<\/b>(\2)<\/a>/g' \
+        | sed -e 's/<b>\([^<]*\)<\/b>(\([1-9]*\))/<a href="..\/..\/man\2\/\1\/"><b>\1<\/b>(\2)<\/a>/g' \
         | sed 's/<\/head>/<link rel="stylesheet" href="..\/..\/man.css" \/><script type="module" src="..\/..\/man.js"><\/script><\/head>/'> "index.html")
     echo "$relative_path"
 
